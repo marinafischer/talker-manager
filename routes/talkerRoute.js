@@ -53,4 +53,12 @@ router.put('/:id',
   res.status(200).json({ id: +id, ...req.body });
 });
 
+router.delete('/:id', verfier.tokenVerifier, async (req, res) => {
+  const { id } = req.params;
+  const talker = await getTalker();
+  const filterTalker = talker.filter((t) => t.id !== +id);
+  postTalker(filterTalker);
+  res.status(204).end();
+});
+
 module.exports = router;

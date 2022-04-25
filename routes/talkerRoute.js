@@ -1,5 +1,7 @@
 const express = require('express');
 const getTalker = require('../helpers/getTalker');
+const postTalker = require('../helpers/postTalker');
+const verfier = require('../helpers/verifier');
 
 const router = express.Router();
 
@@ -14,6 +16,21 @@ router.get('/:id', async (req, res) => {
 router.get('/', async (req, res) => {
   const talker = await getTalker();
   res.status(200).json(talker);
+});
+
+router.post('/',
+  verfier.tokenVerifier,
+  verfier.nameVerifier,
+  verfier.ageVerifier,
+  verfier.talkerVerifier,
+  verfier.watchedAtVerifier,
+  verfier.rateVerifier,
+  async (req, res) => {
+  const talker = await getTalker();
+  const newTalker = { id: (talker.length + 1), ...req.body };
+  talker.push(newTalker);
+  postTalker(talker);
+  res.status(201).json(newTalker);
 });
 
 module.exports = router;

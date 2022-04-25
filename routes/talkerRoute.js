@@ -1,5 +1,5 @@
 const express = require('express');
-const getTalker = require('./helpers/getTalker');
+const getTalker = require('../helpers/getTalker');
 
 const router = express.Router();
 

@@ -1,15 +1,17 @@
 const express = require('express');
+const verifier = require('../helpers/verifier');
 
 const router = express.Router();
 
-router.post('/', (req, res) => {
-  const { email, password } = req.body;
-  const date = new Date().getTime();
-  const token = `a${date}Cd`;
-  console.log(token);
-  console.log(email);
-  console.log(password);
-  res.status(200).json({ token });
-});
+router.post(
+  '/',
+  verifier.emailVerifier,
+  verifier.passwordVerifier,
+  (req, res) => {
+    const date = new Date().getTime();
+    const token = `a${date}Cd`;
+    res.status(200).json({ token });
+  },
+);
 
 module.exports = router;

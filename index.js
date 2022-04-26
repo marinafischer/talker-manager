@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const talkerRoute = require('./routes/talkerRoute');
 const loginRoute = require('./routes/loginRoute');
+const erroMiddleware = require('./erroMiddleware');
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,6 +16,8 @@ app.use('/login', loginRoute);
 app.get('/', (_request, response) => {
   response.status(HTTP_OK_STATUS).send();
 });
+
+app.use(erroMiddleware);
 
 app.listen(PORT, () => {
   console.log(`Online, na ${PORT}`);

@@ -68,10 +68,6 @@ const watchedAtVerifier = (req, res, next) => {
   if (watchedAt === '') {
     return next({ status: 400,
       message: 'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios' });
-    
-    // return res.status(400).json({
-    //   message: 'O campo "talk" é obrigatório e "watchedAt" e "rate" não podem ser vazios',
-    // });
   }
   if (!dateRegex.test(watchedAt)) {
     return res.status(400).json({

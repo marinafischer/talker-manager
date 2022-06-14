@@ -20,7 +20,7 @@ Para o desenvolvimento desse projeto não foi utilizado nenhum banco de dados e 
 
 ## Para começar:
 
-- Clone o repositório:
+- Clone o repositório: git@github.com:marinafischer/talker-manager.git
 
 - Para iniciar com node:
   - Instale as dependencias: npm install
